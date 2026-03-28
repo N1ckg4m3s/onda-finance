@@ -1,6 +1,10 @@
-import { authService } from "../handlers/auth/auth.service";
+import { loginHandler } from "../handlers/auth/auth.handler";
+import { transactionService } from "../handlers/transaction/transaction.service";
 
-type MethodHandler = (params: unknown) => unknown;
+type MethodHandler = (params: {
+    body?: any,
+    query?: any
+}) => any;
 
 type HttpMethodMap = {
     get?: MethodHandler;
@@ -13,13 +17,13 @@ type ApiRoutes = Record<string, HttpMethodMap>;
 
 export const apiRoutes: ApiRoutes = {
     "/login": {
-        post: (params) => authService.login(params),
+        post: loginHandler,
     },
     "/dashboard": {
-        get: (params) => console.log(params)
+        get: console.log
     },
-    "/transference": {
-        get: (params) => console.log(params),
-        post: (params) => console.log(params)
+    "/transaction": {
+        get: transactionService.getTransactions,
+        post: transactionService.newTransactions
     }
 };
