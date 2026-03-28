@@ -1,41 +1,15 @@
-import type { Transaction } from "../../../features/transaction/types/types";
-
-type AccountKey = string; // "000000-0000"
-
-const FAKE_DB: Record<AccountKey, Transaction[]> = {
-    "101010-0001": [
-        {
-            amount: 10,
-            created_at: new Date().toISOString(),
-            destination: {
-                account: '121212',
-                agency: '0001',
-                ownerName: 'sem nome'
-            },
-            id: 'mock id',
-            type: 'out'
-        },
-        {
-            amount: 25,
-            created_at: new Date().toISOString(),
-            destination: {
-                account: '121212',
-                agency: '0001',
-                ownerName: 'sem nome'
-            },
-            id: 'mock id 2',
-            type: 'in'
-        },
-    ]
-};
+import type { AccountResume } from "../../../features/auth/types/types";
+import { FAKE_DB } from "../../../infra/db/FAKE_DB";
 
 export const transactionRepository = {
     getTransactions: async ({ page, limit, accountKey }: { page: number, limit: number, accountKey: string }) => {
 
-        const userTransactions = FAKE_DB[accountKey]
+        const userTransactions = FAKE_DB.transactions[accountKey]
 
         const start = (page - 1) * limit;
         const end = start + limit;
+
+        console.log(userTransactions)
 
         return {
             data: userTransactions.slice(start, end),
@@ -45,7 +19,23 @@ export const transactionRepository = {
         }
     },
 
-    newTransactions: async () => {
+    newTransactions: async (accountKey: string, params: { destination: AccountResume, amount: number, type: 'in' | 'out' }) => {
+        const { destination, amount, type } = params
 
+        const newTransaction = {
+            amount,
+            created_at: new Date().toDateString(),
+            destination: {
+                account: destination.account,
+                agency: destination.agency,
+                ownerName: destination.owderName
+            },
+            id: crypto.randomUUID(),
+            type
+        }
+
+        FAKE_DB.transactions[accountKey].push(newTransaction)
+
+        return newTransaction
     }
 }

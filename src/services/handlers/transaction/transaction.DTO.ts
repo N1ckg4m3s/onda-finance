@@ -5,6 +5,7 @@ const CreateTransactionSchema = z.object({
     destination: z.object({
         agency: z.string(),
         account: z.string(),
+        owderName: z.string(),
     }),
 });
 
