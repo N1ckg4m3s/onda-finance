@@ -1,5 +1,5 @@
 import { loginHandler } from "../handlers/auth/auth.handler";
-import { transactionService } from "../handlers/transaction/transaction.service";
+import { transactionHandler } from "../handlers/transaction/transaction.handler";
 
 type MethodHandler = (params: {
     body?: any,
@@ -23,7 +23,7 @@ export const apiRoutes: ApiRoutes = {
         get: console.log
     },
     "/transaction": {
-        get: transactionService.getTransactions,
-        post: transactionService.newTransactions
+        get: transactionHandler.getTransactions,
+        post: transactionHandler.newTransaction
     }
 };
