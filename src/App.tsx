@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { LoginPage } from './pages/login/login.page'
 import { ProtectedRoute } from './routes/protected.route'
+import { DashboardPage } from './pages/dashboard/dashboard.page'
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
 
         <Route path="/dashboard" element={
           <ProtectedRoute>
-            rota dashboard
+            <DashboardPage />
           </ProtectedRoute>
         } />
 
