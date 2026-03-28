@@ -9,8 +9,6 @@ export const transactionRepository = {
         const start = (page - 1) * limit;
         const end = start + limit;
 
-        console.log(userTransactions)
-
         return {
             data: userTransactions.slice(start, end),
             total: userTransactions.length,
