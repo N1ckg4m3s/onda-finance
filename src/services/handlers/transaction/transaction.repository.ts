@@ -6,11 +6,13 @@ export const transactionRepository = {
 
         const userTransactions = FAKE_DB.transactions[accountKey]
 
+        const ordened = [...userTransactions].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+
         const start = (page - 1) * limit;
         const end = start + limit;
 
         return {
-            data: userTransactions.slice(start, end),
+            data: ordened.slice(start, end),
             total: userTransactions.length,
             page,
             limit
@@ -22,7 +24,7 @@ export const transactionRepository = {
 
         const newTransaction = {
             amount,
-            created_at: new Date().toDateString(),
+            created_at: new Date(Date.now()).toISOString(),
             destination: {
                 account: destination.account,
                 agency: destination.agency,
