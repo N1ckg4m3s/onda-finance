@@ -5,7 +5,6 @@ import { fakeDelay, generateError } from "../services/axios.helpe";
 // Criando a instancia do axios
 export const api = axios.create({ baseURL: "/mock" });
 
-
 // Interceptador para emular a requisição a api
 api.interceptors.request.use(async (config) => {
     await fakeDelay(200 + Math.random() * 500); // uma demora entre 0 a 500ms
@@ -19,7 +18,12 @@ api.interceptors.request.use(async (config) => {
     const handler = endpoint[method];
     if (!handler) return generateError(405, "Method Not Allowed")
 
-    const data = await handler(config.data);
+    const handlerPayload = {
+        body: config.data,
+        query: config.params,
+        headers: config.headers,
+    };
+    const data = await handler(handlerPayload);
 
     return {
         ...config,
@@ -32,3 +36,13 @@ api.interceptors.request.use(async (config) => {
         }),
     };
 });
+
+
+export type ApiRequest<TBody = unknown, TQuery = unknown> = {
+    body?: TBody;
+    query?: TQuery;
+};
+
+export type Handler<TBody = unknown, TQuery = unknown, TResponse = unknown> = (
+    req: ApiRequest<TBody, TQuery>
+) => TResponse | Promise<TResponse>;

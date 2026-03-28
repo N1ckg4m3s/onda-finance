@@ -1,19 +1,10 @@
 import { create } from 'zustand'
-
-type Session = {
-    token: string,
-    account: {
-        id: string,
-        agency: string,
-        account: string,
-        ownerName: string,
-    }
-}
+import type { AuthSession } from '../types/types';
 
 type AuthState = {
-    session: Session | null,
-    setSession: (session: Session) => void,
-    logount: () => void
+    session: AuthSession | null,
+    setSession: (session: AuthSession) => void,
+    logout: () => void
 }
 
 const sessionOnStorage = localStorage.getItem('session')
@@ -21,7 +12,7 @@ const sessionOnStorage = localStorage.getItem('session')
 export const useAuthStore = create<AuthState>((set) => ({
     session: sessionOnStorage ? JSON.parse(sessionOnStorage) : null,
 
-    logount() {
+    logout() {
         localStorage.removeItem('session')
         set({ session: null })
     },
