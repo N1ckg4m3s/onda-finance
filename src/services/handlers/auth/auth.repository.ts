@@ -6,7 +6,7 @@ export const authRepository = {
         const accountKey = generateAccountKey({ account, agency })
 
         const userAccount = FAKE_DB.accounts[accountKey]
-        if (!userAccount) throw new Error('No Account');
+        if (!userAccount) throw new Error('Credenciais invalidas');
 
         //retorno de sucesso
         return {
