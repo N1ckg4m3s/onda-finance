@@ -16,15 +16,13 @@ export const TransactionComponent: React.FC<props> = ({ transaction }) => {
         'text-green-500' :
         'text-red-500'
 
-    console.log(transaction.created_at)
-
     return <div className="flex items-center justify-between">
 
         <div className="flex items-center gap-2">
             {renderArrow}
 
             <div className="flex flex-col">
-                <span>{transaction.destination.ownerName}</span>
+                <span>{transaction.destination?.ownerName}</span>
                 <span className="text-xs text-slate-400">
                     {formatDate(transaction.created_at)}
                 </span>

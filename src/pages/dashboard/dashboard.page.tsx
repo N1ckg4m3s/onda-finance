@@ -35,6 +35,12 @@ export const DashboardPage = () => {
                             </div>
                         )}
 
+                        {error && (
+                            <div className="text-sm text-red-500">
+                                R$ --,--
+                            </div>
+                        )}
+
                         {!isLoading && !error &&
                             <p className="text-2xl font-bold">{formatCurrency(calculateBalance(data.data || {}))}</p>
                         }
