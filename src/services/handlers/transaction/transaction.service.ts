@@ -5,7 +5,7 @@ import { generateAccountKey } from "./transaction.helper"
 import { transactionRepository } from "./transaction.repository"
 
 export const transactionService = {
-    getTransactions: async (query: any ) => {
+    getTransactions: async (query: any) => {
         const { page = 1, limit = 10, account, agency } = query
 
         const accountKey = generateAccountKey({ account, agency })
@@ -19,7 +19,7 @@ export const transactionService = {
         const toKey = generateAccountKey(dto.destination);
 
         const fromAccount = await accountRepository.getUserBalance(fromKey);
-        const toAccount = await accountRepository.getUserBalance(toKey);
+        const toAccount = await accountRepository.isValidAccount(toKey);
 
         if (!toAccount) throw new Error("Destination account not found");
         if (fromKey === toKey) throw new Error("Invalid transfer; you can't transfer to your self");

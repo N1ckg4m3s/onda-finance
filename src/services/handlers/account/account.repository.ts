@@ -31,5 +31,12 @@ export const accountRepository = {
         userAccount.balance += amount
 
         return userAccount.balance
-    }
+    },
+
+    isValidAccount: async (accountKey: string) => {
+        const userAccount = FAKE_USER_DB[accountKey]
+        if (!userAccount) throw new Error('No Account registed');
+
+        return userAccount
+    },
 }
