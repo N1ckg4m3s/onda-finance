@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/ca
 import { Input } from "../../components/ui/input"
 import { Label } from "../../components/ui/label"
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "../../hooks/handlers/useLogin"
+import { useLogin } from "../../features/auth/hooks/useLogin"
 
 const schema = z.object({
     agency: z.string().min(1),

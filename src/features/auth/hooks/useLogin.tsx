@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { api } from "../../lib/axios";
-import { useAuthStore } from "../../store/auth.store";
+import { api } from "../../../lib/axios";
+import { useAuthStore } from "../store/auth.store";
 export const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
