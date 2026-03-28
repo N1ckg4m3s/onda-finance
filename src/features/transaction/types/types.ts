@@ -13,3 +13,19 @@ export interface Transaction {
         ownerName: string,
     },
 }
+
+export type createTransactionsParams = Pick<Transaction, 'amount'> & {
+    destination: {
+        agency: string,
+        account: string,
+    }
+    from: {
+        agency: string,
+        account: string,
+    }
+}
+
+export type createTransactionsForm = Pick<Transaction, 'amount'> & {
+    agency: string,
+    account: string,
+}
