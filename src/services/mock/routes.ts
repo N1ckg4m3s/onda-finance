@@ -1,4 +1,5 @@
 import { loginHandler } from "../handlers/auth/auth.handler";
+import { dashboardHandler } from "../handlers/dashboard/dashboard.handler";
 import { transactionHandler } from "../handlers/transaction/transaction.handler";
 
 type MethodHandler = (params: {
@@ -20,7 +21,7 @@ export const apiRoutes: ApiRoutes = {
         post: loginHandler,
     },
     "/dashboard": {
-        get: console.log
+        get: dashboardHandler.getUserBalance
     },
     "/transaction": {
         get: transactionHandler.getTransactions,
