@@ -7,12 +7,14 @@ import { Skeleton } from "../../components/ui/skeleton";
 import type { Transaction } from "../../features/transaction/types/types";
 import { TransactionComponent } from "./transaction.card";
 import { formatCurrency } from "../../lib/format/currency";
-import { calculateBalance } from "../../features/transaction/services/calculateBalance";
 import { PaginationComponent } from "../../components/pagination.component";
 import { useNavigate } from "react-router-dom";
-
+import { useBalance } from "../../features/dashboard/hooks/useBalance";
 
 export const DashboardPage = () => {
+
+    const { balance, balanceError, balanceLoading } = useBalance()
+
     const navigate = useNavigate()
     const [page, setPage] = useState(1);
     const { data, error, isLoading } = useTransaction({ page, limit: 10 })
@@ -29,20 +31,20 @@ export const DashboardPage = () => {
                         <CardTitle>Saldo disponivel</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        {isLoading && (
+                        {balanceLoading && (
                             <div className="space-y-3">
                                 <Skeleton className="h-8 w-1/3" />
                             </div>
                         )}
 
-                        {error && (
+                        {balanceError && (
                             <div className="text-sm text-red-500">
                                 R$ --,--
                             </div>
                         )}
 
-                        {!isLoading && !error &&
-                            <p className="text-2xl font-bold">{formatCurrency(calculateBalance(data.data || {}))}</p>
+                        {!balanceLoading && !balanceError &&
+                            <p className="text-2xl font-bold">{formatCurrency(balance)}</p>
                         }
 
                     </CardContent>
