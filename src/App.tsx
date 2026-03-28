@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { LoginPage } from './pages/login/login.page'
 import { ProtectedRoute } from './routes/protected.route'
 import { DashboardPage } from './pages/dashboard/dashboard.page'
+import { TransactionPage } from './pages/transaction/transaction.page'
 
 function App() {
   return (
@@ -16,9 +17,9 @@ function App() {
           </ProtectedRoute>
         } />
 
-        <Route path="/transfer" element={
+        <Route path="/transaction" element={
           <ProtectedRoute>
-            rota dashboard
+            <TransactionPage />
           </ProtectedRoute>
         } />
 

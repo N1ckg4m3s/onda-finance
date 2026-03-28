@@ -9,9 +9,11 @@ import { TransactionComponent } from "./transaction.card";
 import { formatCurrency } from "../../lib/format/currency";
 import { calculateBalance } from "../../features/transaction/services/calculateBalance";
 import { PaginationComponent } from "../../components/pagination.component";
+import { useNavigate } from "react-router-dom";
 
 
 export const DashboardPage = () => {
+    const navigate = useNavigate()
     const [page, setPage] = useState(1);
     const { data, error, isLoading } = useTransaction({ page, limit: 10 })
 
@@ -40,10 +42,11 @@ export const DashboardPage = () => {
                     </CardContent>
                 </Card>
 
-
                 {/* Ações */}
                 <Card className="flex items-center justify-center">
-                    <Button variant={"ghost"} className="w-full">
+                    <Button variant={"ghost"} className="w-full"
+                        onClick={() => navigate('/transaction')}
+                    >
                         Nova Transferência
                     </Button>
                 </Card>

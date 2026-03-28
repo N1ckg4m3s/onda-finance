@@ -20,9 +20,11 @@ export const AppLayout: React.FC<props> = ({ children }) => {
 
             {/* NAVBAR */}
             <header className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
-                <div className="font-semibold text-black">
+                <Button variant={"ghost"} className="font-semibold text-black"
+                    onClick={() => navigate('/dashboard')}
+                >
                     Onda Finance
-                </div>
+                </Button>
 
                 <div className="text-xs text-slate-800">
                     Bem-vindo
