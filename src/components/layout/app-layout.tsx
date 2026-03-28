@@ -15,16 +15,32 @@ export const AppLayout: React.FC<props> = ({ children }) => {
         navigate('/')
     }
 
+    const isDashboard = location.pathname === "/dashboard";
+
+    const handleBack = () => {
+        navigate(-1);
+    };
+
     return (
         <div className="min-h-screen text-white">
 
             {/* NAVBAR */}
             <header className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
-                <Button variant={"ghost"} className="font-semibold text-black"
-                    onClick={() => navigate('/dashboard')}
-                >
-                    Onda Finance
-                </Button>
+                <div className="flex items-center gap-3">
+                    {!isDashboard && (
+                        <Button
+                            variant="ghost"
+                            onClick={handleBack}
+                            className="text-black"
+                        >
+                            ← Voltar
+                        </Button>
+                    )}
+
+                    <div className="font-semibold text-black">
+                        Onda Finance
+                    </div>
+                </div>
 
                 <div className="text-xs text-slate-800">
                     Bem-vindo
