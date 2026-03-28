@@ -12,7 +12,7 @@ export const PaginationComponent: React.FC<props> = ({ actualPage, changePage, t
             <PaginationContent>
 
                 {
-                    actualPage - 1 > 1 &&
+                    actualPage > 1 &&
                     <PaginationItem>
                         <PaginationPrevious onClick={() => changePage(Math.max(actualPage - 1, 1))} size={totalPages} />
                     </PaginationItem>

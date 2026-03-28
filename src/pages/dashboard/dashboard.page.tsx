@@ -19,7 +19,7 @@ export const DashboardPage = () => {
     const [page, setPage] = useState(1);
     const { data, error, isLoading } = useTransaction({ page, limit: 10 })
 
-    const amountPage = data && Math.floor(data.total / data.limit) || 0
+    const amountPage = data && Math.ceil(data.total / data.limit) || 0
 
     return (
         <AppLayout>
