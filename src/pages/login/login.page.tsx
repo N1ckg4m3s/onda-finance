@@ -29,7 +29,9 @@ export const LoginPage = () => {
 
             // Migrando para o dashboard
             navigate('/dashboard')
-        } catch { }
+        } catch {
+            return;
+        }
     }
 
     return (
@@ -46,7 +48,7 @@ export const LoginPage = () => {
                     <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col gap-4'>
                         <div className="space-y-2">
                             <Label htmlFor="agency">Agência</Label>
-                            <Input id="agency" placeholder="0001" {...form.register("agency")} />
+                            <Input id="agency" placeholder="Agencia [0001]" {...form.register("agency")} />
 
                             {form.formState.errors.agency && (
                                 <p className="text-sm text-red-500">
@@ -57,7 +59,7 @@ export const LoginPage = () => {
 
                         <div className="space-y-2">
                             <Label htmlFor="account">Conta</Label>
-                            <Input id="account" placeholder="101010" {...form.register("account")} />
+                            <Input id="account" placeholder="Conta [101010]" {...form.register("account")} />
 
                             {form.formState.errors.account && (
                                 <p className="text-sm text-red-500">
