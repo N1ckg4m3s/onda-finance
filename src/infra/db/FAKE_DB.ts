@@ -19,6 +19,14 @@ export const FAKE_DB: DB_Schema = {
             account: '202020',
             agency: '0001',
             balance: 500,
+        },
+
+        // BOT ACCOUNT
+        "999999-9999": {
+            owderName: 'bot',
+            account: '999999',
+            agency: '9999',
+            balance: 1000,
         }
     },
     transactions: {
