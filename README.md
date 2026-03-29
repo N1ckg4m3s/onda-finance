@@ -193,4 +193,6 @@ Em aplicações reais, autenticação segura deve ser feita com:
 
 ## Deploy
 
-O projeto ainda não foi hospedado
+```
+  https://onda-finance-neon.vercel.app/
+```
