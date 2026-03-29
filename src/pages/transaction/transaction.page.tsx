@@ -85,7 +85,7 @@ export const TransactionPage = () => {
                                     <div className="space-y-2">
                                         <Label>Agência</Label>
                                         <Input
-                                            placeholder="0001"
+                                            placeholder="Agencia [0001]"
                                             {...form.register("agency")}
                                         />
                                         {form.formState.errors.agency && (
@@ -99,7 +99,7 @@ export const TransactionPage = () => {
                                     <div className="space-y-2">
                                         <Label>Conta</Label>
                                         <Input
-                                            placeholder="202020"
+                                            placeholder="Conta [202020]"
                                             {...form.register("account")}
                                         />
                                         {form.formState.errors.account && (
@@ -115,7 +115,7 @@ export const TransactionPage = () => {
                                         <Input
                                             type="number"
                                             step="0.01"
-                                            placeholder="100.00"
+                                            placeholder="Amount [100.00]"
                                             {...form.register("amount", { valueAsNumber: true })}
                                         />
                                         {form.formState.errors.amount && (
